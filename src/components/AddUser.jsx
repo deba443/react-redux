@@ -1,15 +1,23 @@
 import { useState } from "react";
 import { HiUser } from "react-icons/hi";
 import { MdEmail, MdTitle } from "react-icons/md";
+import { useDispatch,useSelector } from "react-redux";
 import './Employee.css'
+import { add, edit } from '../action/index'
+// import { bindActionCreators } from "redux";
 
 const AddUser = (props) => {
+    const dispatch = useDispatch()
+    // const data=useSelector((state)=>state.employee)
+
     const [input, setInput] = useState({
         name: '',
         email: '',
         title: '',
-        role: ''
+        role: '',
+        id: Date.now()
     })
+    // const [items,setItems]=useState([])
     const [error, setError] = useState({
         nameError: '',
         emailError: '',
@@ -17,11 +25,13 @@ const AddUser = (props) => {
         roleError: ''
 
     })
-    const dataAdd=(e)=>{
+
+    const dataAdd = (e) => {
         e.preventDefault()
-
+        props.cancel()
+        // props.flag(false)
+        dispatch(add(input))
     }
-
     return (
 
         <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
@@ -69,7 +79,7 @@ const AddUser = (props) => {
                                                 onChange={(e) => {
                                                     setInput({
                                                         ...input,
-                                                        email: e.target.value,
+                                                        title: e.target.value,
                                                     });
                                                     setError({ ...error, emailError: "" });
                                                 }}
@@ -115,7 +125,7 @@ const AddUser = (props) => {
                                                 onChange={(e) => {
                                                     setInput({
                                                         ...input,
-                                                        email: e.target.value,
+                                                        role: e.target.value,
                                                     });
                                                     setError({ ...error, emailError: "" });
                                                 }}

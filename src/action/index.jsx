@@ -1,24 +1,27 @@
 
-export const edit=()=>{
+export const edit=(id)=>{
     return(
         {
-            type:'EDIT'
+            type:'EDIT',
+            payload:id
         }
     )
 }
 
-export const delet=()=>{
+export const delet=(id)=>{
     return(
         {
-            type:'DELETE'
+            type:'DELETE',
+            payload:id
 
         }
     )
 };
-export const add=()=>{
+export const add=(data)=>{
     return(
         {
-            type:'ADD'
+            type:'ADD',
+            payload:data
         }
     )
 }

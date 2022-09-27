@@ -53,6 +53,11 @@ th {
     text-align: left;
     padding: 8px;
 }
+/* td{
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+} */
 .button{
     display: flex;
     justify-content: flex-start;
