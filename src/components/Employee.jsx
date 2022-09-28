@@ -4,6 +4,7 @@ import "./Employee.css"
 import EmployeeData from "./EmployeeData"
 import { useSelector } from "react-redux"
 const Employee = () => {
+    const[action,setAction]=useState('create')
     const [open, setOpen] = useState(false)
     const handleClose = () => {
         setOpen(false)
@@ -20,24 +21,27 @@ const Employee = () => {
         <div>
             <div className="body">
                 <div className="main">
-                    <button onClick={() => { setOpen(true) }}>Add user</button>
+                    <button onClick={() => { 
+                        setOpen(true);
+                        setAction('create')
+                     }}>Add user</button>
 
                 </div>
                 <div className="item">
-                    {open && <AddUser cancel={handleClose} />}
+                    {open && <AddUser cancel={handleClose} open={handleOpen} action={action}/>}
                     <table>
                         <thead>
                             <tr>
                                 <th>Name</th>
                                 <th>Title</th>
-                                <th>email</th>
-                                <th>role</th>
-                                <th>action</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             {userList.map((employeeData)=>(
-                                    <EmployeeData user={employeeData} cancel={handleClose} open={handleOpen}/>
+                                    <EmployeeData user={employeeData} cancel={handleClose} open={handleOpen} action={setAction}/>
 
                             ))}
 

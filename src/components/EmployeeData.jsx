@@ -1,27 +1,33 @@
 // import './Employee.css'
 import './Employee.css'
-import { useDispatch } from 'react-redux'
-import {delet,edit} from '../action/index'
+import { useDispatch,useSelector } from 'react-redux'
+import {delet,edit,update} from '../action/index'
 import { useState } from 'react'
 import AddUser from './AddUser'
 const EmployeeData = (props) => {
-    const[flag,setFlag]=useState(false)
+    // const[flag,setFlag]=setFlag(false)
     const dispatch=useDispatch()
     const{name,title,email,role,id}=props.user
-    // setFlag(false)
+    const data={
+        name:name,
+        title:title,
+        email:email,
+        role:role,
+        id:id
+    }
     return (
         <tr>
-            {flag && <AddUser cancel={props.cancel} data={props.user} />}
             <td>{name}</td>
             <td>{title}</td>
             <td>{email}</td>
             <td>{role}</td>
             <td className='button'>
                 <button onClick={(e)=>{
-                    e.preventDefault();
-                    // setFlag(true)
+                    // e.preventDefault();
+                    // {<AddUser/>}
                     props.open()
-                    dispatch(edit(id))
+                    props.action('edit')
+                    dispatch(update(data))
                 }}>Update</button>
                 <button onClick={(e)=>{
                     e.preventDefault();

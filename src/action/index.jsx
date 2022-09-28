@@ -1,9 +1,10 @@
 
-export const edit=(id)=>{
+export const edit=(data)=>{
     return(
         {
             type:'EDIT',
-            payload:id
+            // payload:id,
+            payload:data
         }
     )
 }
@@ -22,6 +23,21 @@ export const add=(data)=>{
         {
             type:'ADD',
             payload:data
+        }
+    )
+}
+export const update=(data)=>{
+    return(
+        {
+            type:'UPDATE',
+            payload:data
+        }
+    )
+}
+export const cleanup=()=>{
+    return(
+        {
+            type:'CLEANUP'
         }
     )
 }

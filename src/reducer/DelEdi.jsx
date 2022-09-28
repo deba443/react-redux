@@ -8,15 +8,36 @@ export const employeeReducer=(state=[],action)=>{
             
         }
         case 'EDIT':{
-            let user;
-            user=state.filter((user)=>action.payload == user.id)
+            for(let i=0;i<state.length;i++){
+                if(state[i].id===action.payload.id){
+                    state[i]=action.payload
+                    break
+                }
+            }
+            return state
         }
         case 'ADD':{
-            // console.log('add action data',action,state)
             state=[...state,action.payload]
             return state
         }
         // default:return state
     }
     return state
+}
+export const singleEmployeeData=(state=[],action)=>{
+    // console.log(state,state[0])
+    switch(action.type){
+        case 'UPDATE':{
+            state=[action.payload]
+            // console.log(state)
+            return state
+
+        }
+        case 'CLEANUP':{
+            state=[]
+            return state
+        }
+    }
+    return state
+
 }

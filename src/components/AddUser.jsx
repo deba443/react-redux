@@ -1,14 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HiUser } from "react-icons/hi";
 import { MdEmail, MdTitle } from "react-icons/md";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import './Employee.css'
-import { add, edit } from '../action/index'
+import { add, edit, update } from '../action/index'
 // import { bindActionCreators } from "redux";
 
 const AddUser = (props) => {
     const dispatch = useDispatch()
-    // const data=useSelector((state)=>state.employee)
+    const singleEmployee = useSelector(state => state.singleEmployeeData)
+    // console.log(singleEmployee)
+    // const editData=data[0]
+    useEffect(() => {
+        //Check only if singleEmployee has some data
+        //Then set single employee  into input using setInput
+        if (singleEmployee[0] != undefined) {
+            setInput({
+                name: singleEmployee[0].name,
+                email: singleEmployee[0].email,
+                title: singleEmployee[0].title,
+                role: singleEmployee[0].role,
+                id: singleEmployee[0].id
+            })
+            dispatch(update())
+
+        }
+
+
+    }, [singleEmployee])
+
+    // const val=singleEmployee[0].id
+
 
     const [input, setInput] = useState({
         name: '',
@@ -17,7 +39,6 @@ const AddUser = (props) => {
         role: '',
         id: Date.now()
     })
-    // const [items,setItems]=useState([])
     const [error, setError] = useState({
         nameError: '',
         emailError: '',
@@ -25,12 +46,27 @@ const AddUser = (props) => {
         roleError: ''
 
     })
-
     const dataAdd = (e) => {
-        e.preventDefault()
-        props.cancel()
-        // props.flag(false)
-        dispatch(add(input))
+        if (props.action == 'create') {
+            e.preventDefault()
+            // console.log(singleEmployee[0])
+            props.cancel()
+            dispatch(add(input))
+        }
+
+        // if (props.action == 'edit') {
+            else{
+            e.preventDefault()
+            props.cancel()
+            dispatch(edit(input))
+            // console.log('deba')
+        }
+        setInput({
+            name: '',
+            title: '',
+            role: '',
+            email: '',
+        })
     }
     return (
 
