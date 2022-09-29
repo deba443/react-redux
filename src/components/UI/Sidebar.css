@@ -1,0 +1,33 @@
+.sidebar-content{
+    height: 100vh;
+    max-width: 15vw;
+    width: 14vw;
+    /* flex: 1 1; */
+    margin:0;
+    background-color:#000000;
+    color: rgba(255, 255, 255, 0.856);
+    float: left;
+    padding: 10px;
+}
+.sidebar-content_list{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    /* padding-top: 5px; */
+}
+ul li{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 5px;
+    border:0.5px solid transparent;
+    border-radius: 2px;
+}
+ul li:hover{
+    background-color: rgb(27, 27, 133);
+    padding: 5px;
+    border: 0.5px solid rgb(9, 9, 129);
+    border-radius: 2px;
+    /* position: fixed; */
+}
