@@ -1,28 +1,25 @@
 import { useEffect, useState } from "react";
-import { Link, Navigate,Outlet } from "react-router-dom";
+import { Link, Navigate, Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { Layout } from "../layout/Layout";
 const Protected = (props) => {
-    // const { children } = props
     const navigate = useNavigate();
-    const [state, setState] = useState(null)
+    let login = JSON.parse(localStorage.getItem('isLogin'))
     useEffect(() => {
-        // let login=JSON.parse(localStorage.getItem('login'))
-        let login = localStorage.getItem('isLogin')
-        // console.log(login)
-        // setState(login)
-        if(!login){
+        if (!login[0]) {
             navigate('/')
         }
-    },[])
+    }, [login])
 
     return <>
-            
-    {/* {console.log(state)}
+
+        {/* {console.log(state)}
         {
            state ? <Outlet/>:
                 <Navigate to="/" />
         } */}
-        <Outlet/>
+        <Outlet />
+
     </>
 }
 export default Protected;
