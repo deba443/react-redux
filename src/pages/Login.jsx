@@ -74,12 +74,13 @@ const Login = () => {
     // else{
     //   localStorage
     // }
+    let ar=[true]
     localStorage.setItem('login',JSON.stringify(data))
-    localStorage.setItem('isLogin',true)
+    localStorage.setItem('isLogin',JSON.stringify(ar))
 
 
   }
-  // localStorage.setItem('isLogin',false)s
+  localStorage.setItem('isLogin',JSON.stringify([false]))
   // saveValue(null)
   return (
     <div>

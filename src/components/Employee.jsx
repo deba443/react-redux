@@ -24,7 +24,7 @@ const Employee = () => {
                     <button onClick={() => { 
                         setOpen(true);
                         setAction('create')
-                     }}>Add user</button>
+                     }}>Add Employee</button>
 
                 </div>
                 <div className="item">
