@@ -1,22 +1,41 @@
-import logo from './logo.svg';
 import Employee from './components/Employee';
-import { Layout } from './layout/Layout'
-import {useState} from 'react'
-import { Routes,Route } from 'react-router';
-import Initial from "./initial/Initial"
+import { Routes, Route, Navigate } from 'react-router';
 import Login from "./pages/Login"
 import Welcome from './initial/Welcome';
 import Protected from './pages/protected'
+import FullScreen from './components/UI/FullScreen';
+import { Layout } from './layout/Layout';
 function App() {
-  const[loggedIn,IsLoggedIn]=useState(false)
+  let loggedIn = JSON.parse(localStorage.getItem('isLogin'))
   return (
+    // <Layout>
+    // <BrowserRouter>
     <Routes>
-      <Route path='/' element={<Login/>}/>
+      <Route path='/' element={<Login />} />
+      {/* <Route path="/dashboard" element={<FullScreen />} /> */}
+      {/* <Route
+        exact
+        path="dashboard"
+        element={
+          loggedIn[0]?
+            <FullScreen />:
+            <Navigate replace to={"/"} />
+          }
+          />  */}
       <Route element={<Protected />}>
-        <Route path="/welcome" element={<Welcome/>} />
+        <Route element={<Layout />}>
+          <Route path="/welcome" element={<Welcome />} />
+          <Route path="/employee" element={<Employee />} />
+
+        </Route>
+        <Route path="/dashboard" element={<FullScreen/>}/>
+
       </Route>
 
     </Routes>
+    // <div>
+    //   <Cara/>
+    // </div>
   );
 }
 
